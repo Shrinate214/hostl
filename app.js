@@ -40,7 +40,7 @@ app.get("/home",function(req,res){
 app.get("/register",function(req,res){
     res.render("register");
 })
-app.get("/login",function(req,res){
+app.get("/",function(req,res){
     res.render("login");
 })
 app.post("/login",async (req,res)=>{
@@ -49,7 +49,7 @@ app.post("/login",async (req,res)=>{
    const useremail=await User.findOne({email:username}); 
     if (useremail.password===password)
     {
-        res.render("secrets");
+        res.render("student");
     }
 else{
      console.log(useremail);
@@ -59,9 +59,7 @@ catch(error){
     console.log("chud gya bro");
 }}
 );
-app.get("/secrets",function(req,res){
-    res.render("secrets");
-});
+
 
 
 
