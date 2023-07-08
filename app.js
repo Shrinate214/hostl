@@ -103,4 +103,8 @@ app.post("/login", async (req, res) => {
 
 app.listen(port, function () {
     console.log(`Weather app listening on port ${port}`);
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 9abc659a8f028b37a7cfd87a9e0a97044712e5ab
