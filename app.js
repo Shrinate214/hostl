@@ -14,7 +14,12 @@ const path= require("path");
 
 mongoose.connect("mongodb://127.0.0.1:27017/userDB",{useNewUrlParser:true});
 const UserSchema={
-    email:String,password:String
+    email:String,
+    password:String,
+    name: String,
+    sid: Number,
+    hostel: String,
+    room: Number
 };
 const User= new mongoose.model("User",UserSchema)
 app.get("/home",function(req,res){
@@ -60,15 +65,6 @@ catch(error){
 }}
 );
 
-
-
-
-
-
-
-
-
-
 app.listen(port, function()  {
-    console.log(`Weather app listening on port 3000`);
+    console.log(`Weather app listening on port ${port}`);
   });
