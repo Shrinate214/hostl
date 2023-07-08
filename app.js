@@ -35,11 +35,11 @@ const User = new mongoose.model("User", UserSchema);
 //------------ Get ----------------------//
 
 app.get("/", function (req, res) {
-    res.render("login");
+    res.render("login", {
+        message: "hidden"
+    });
 })
-app.get("/warden", (req, res) => {
-    res.render('warden')
-})
+
 
 //------------ Post ---------------------//
 app.post('/student', async (req, res) => {
@@ -83,8 +83,8 @@ app.post("/login", async (req, res) => {
             email: username
         });
 
-        if (useremail.password === password && useremail.selectedValue === selectedValue) {
-            if (useremail.selectedValue == 'Student') {
+        if (data.password === password && data.selectedValue === selectedValue) {
+            if (data.selectedValue == 'Student') {
                 res.render("student", {
                     name: data.name,
                     sid: data.sid,
@@ -92,9 +92,17 @@ app.post("/login", async (req, res) => {
                     hostel: data.hostel,
                     room: data.room
                 });
-            } else if (useremail.selectedValue == 'Warden') {
-                res.redirect("warden");
+            } else if (data.selectedValue == 'Warden') {
+                User.find().then((data) => {
+                    res.render('warden', {
+                        data: data
+                    });
+                })
             }
+        } else {
+            res.render("login", {
+                message: ""
+            });
         }
     } catch (error) {
         console.log("chud gya bro");
@@ -103,8 +111,4 @@ app.post("/login", async (req, res) => {
 
 app.listen(port, function () {
     console.log(`Weather app listening on port ${port}`);
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> 9abc659a8f028b37a7cfd87a9e0a97044712e5ab

@@ -21,17 +21,25 @@
             <tbody>
             <tr>
                 <th>Name:</th>
-                <td> name </td>
+                <td>Warden</td>
             </tr>
             <tr>
                 <th>Hostel:</th>
-                <td> hostel </td>
+                <td>Hostel </td>
             </tr>
         </tbody>
         </table>
     </div>
-    <div>
-        
+    <h2>Complaint-Box</h2>
+    <div class="complaintBox">
+        <% data.forEach((element) => { %>
+           <% element.complaint.forEach((item) => { %>
+            <div class="card">
+                <p>Name: <%= element.name %> SID: <%= element.sid %> Room No: <%= element.room %></p>
+                <p><%= item %></p>
+            </div>
+            <% }) %>
+        <% }) %>
     </div>
     
 </div>

@@ -1,40 +1,62 @@
 body {
-    text-align: center;
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(12,96,106,1) 35%, rgba(0,212,255,1) 100%);
-    min-height: 100vh;
-    color: white;
-  }
+  text-align: center;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(12, 96, 106, 1) 35%, rgba(0, 212, 255, 1) 100%);
+  min-height: 100vh;
+  color: white;
+}
 
-.details td,.details th {
-    border: solid 1px white;
-    padding: 10px 30px;
-    color: white;
-    font-size: large;
-  }
-  
-  .centre {
-    text-align: center;
-  }
-  
-  .centre svg {
-    padding: 30px;
-  }
-  .centre button {
-    padding: 10px 20px;
-    border: none;
-  }
+.details td,
+.details th {
+  border: solid 1px white;
+  padding: 10px 30px;
+  color: white;
+  font-size: large;
+}
 
-  form h3 {
-    color: aliceblue;
-  }
+.centre {
+  text-align: center;
+}
 
-  table {
+.centre svg {
+  padding: 30px;
+}
 
-    margin: 20px auto;
-  }
+.centre button {
+  padding: 10px 20px;
+  border: none;
+}
 
-  .contact td, .contact th {
-    padding: 5px 30px;
-    color: white;
-  }
+form h3 {
+  color: aliceblue;
+}
+
+table {
+  margin: 20px auto;
+}
+
+.contact td,
+.contact th {
+  padding: 5px 30px;
+  color: white;
+}
+
+.complaintBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 300px;
+  overflow: auto;
+  border: solid 5px red;
+  width: fit-content;
+  margin-left: 27vw;
+}
+
+.card {
+  text-align: left;
+  padding-left: 10px;
+  background-color: white;
+  color: black;
+  width: 40vw;
+  margin-top: 2px;
+}
