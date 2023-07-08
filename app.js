@@ -19,7 +19,8 @@ const UserSchema={
     name: String,
     sid: Number,
     hostel: String,
-    room: Number
+    room: Number,
+     selectedValue:String 
 };
 const User= new mongoose.model("User",UserSchema)
 app.get("/home",function(req,res){
@@ -30,13 +31,14 @@ app.get("/home",function(req,res){
 app.post("/register",function(req,res){
     const newUser=new User({
         email:req.body.username,
-        password:req.body.password
+        password:req.body.password,
+           selectedValue:req.body.Positions
     });
 newUser.save()
 .then(()=>{
-    console.log("fuck off");
+    console.log(newUser);
 })
-res.render("login");}
+res.redirect("login");}
 );
 
 app.get("/home",function(req,res){
@@ -49,21 +51,33 @@ app.get("/",function(req,res){
     res.render("login");
 })
 app.post("/login",async (req,res)=>{
-   try{ const username= req.body.username;
+    try{ const username= req.body.username;
     const password= req.body.password;
-   const useremail=await User.findOne({email:username}); 
-    if (useremail.password===password)
+    const selectedValue=req.body.Positions;
+   const useremail=await User.findOne({email:username});
+
+    if (useremail.password===password && useremail.selectedValue===selectedValue)
+    { 
+        if (useremail.selectedValue=='Student') 
     {
-        res.render("student");
+        res.redirect("secrets");
     }
-else{
+         else if  (useremail.selectedValue=='Warden') 
+    {   res.redirect("submit");
+    }
+    }
+
+    else{  console.log(useremail);
      console.log(useremail);
 }
 }
 catch(error){
-    console.log("chud gya bro");
+    console.log(error);
 }}
 );
+app.get("/secrets",function(req,res){
+    res.render("secrets");
+});
 
 app.listen(port, function()  {
     console.log(`Weather app listening on port ${port}`);
