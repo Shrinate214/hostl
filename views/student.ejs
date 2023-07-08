@@ -11,7 +11,7 @@
     
 
 
-<div class="header"><h2>Student Profile</h2><button>Logout</button></div>
+<div class="header"><h2>Student Profile</h2><button><a href="/">Logout</a></button></div>
 <div class="student centre">
     <div class="centre">
         <svg xmlns="http://www.w3.org/2000/svg" height="8em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
@@ -21,32 +21,33 @@
             <tbody>
             <tr>
                 <th>Name:</th>
-                <td>{student name}</td>
+                <td><%= name %></td>
             </tr>
             <tr>
                 <th>SID:</th>
-                <td>211XXXXX</td>
+                <td><%= sid %></td>
             </tr>
             <tr>
                 <th>Branch:</th>
-                <td>{student branch}</td>
+                <td><%= branch %></td>
             </tr>
             <tr>
                 <th>Hostel:</th>
-                <td>{hostel name}</td>
+                <td><%= hostel %></td>
             </tr>
             <tr>
                 <th>Room:</th>
-                <td>{Room no.}</td>
+                <td><%= room %></td>
             </tr>
         </tbody>
         </table>
     </div>
     <div>
-        <form action="">
+        <form action="/student" method="post">
             <h3>Lodge a complaint</h3>
-            <textarea name="" id="" cols="30" rows="5"></textarea>
-            <div class="centre"><button>Submit</button></div>
+            <input hidden type="number" name="studentid" value="<%= sid %>">
+            <textarea name="complaint" id="complaint" cols="30" rows="5"></textarea>
+            <div class="centre"><button type="submit">Submit</button></div>
         </form>
     </div>
     <div class="contact">
