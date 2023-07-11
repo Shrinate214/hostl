@@ -1,0 +1,37 @@
+<html>
+<head>
+  <title>Data Page</title>
+</head>
+<body>
+  <h1>Data Page</h1>
+
+  <% if (data && data.length > 0) { %>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>SID</th>
+        <th>Batch</th>
+        <th>Room-number</th>
+        <th>Floor</th>
+        <th>Block</th>
+        <!-- Add more table columns as needed -->
+      </tr>
+      <% data.forEach(function(item) { %>
+        <tr>
+          <td><%= item.name %></td>
+          <td><%= item.email_id %></td>
+          <td><%= item.SID %></td>
+          <td><%= item.batch %></td>
+          <td><%= item.room_number %></td>
+          <td><%= item.floor %></td>
+          <td><%= item.block %></td>
+          <!-- Add more table cells as needed -->
+        </tr>
+      <% }); %>
+    </table>
+  <% } else { %>
+    <p>No data available.</p>
+  <% } %>
+</body>
+</html>
