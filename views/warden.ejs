@@ -1,50 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script src="https://kit.fontawesome.com/01b0263b2c.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/student.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
+<%- include('partials/header') %>
 
+<div class="student-header container-sm my-4">
+    <div class="row">
+        <div class="col">
+            <h2>Warden server</h2>
+        </div>
+        <div class="col"><button class="btn btn-danger float-end">
+                <a href="/">Logout</a></button>
+        </div>
+    </div>
+</div>
+<div class="container-sm">
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Name:</th>
+                        <td>Warden</td>
+                    </tr>
+                    <tr>
+                        <th>Hostel:</th>
+                        <td>Hostel </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <form action="/upload" method="post">
+                <button type="submit" class="btn btn-warning float-end">Allocation Set-up</button>
+            </form>
+        </div>
 
-<div class="header"><h2>Warden server</h2><button><a href="/">Logout</a></button></div>
-<div class="student centre">
-    <div class="centre">
-        <svg xmlns="http://www.w3.org/2000/svg" height="8em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
     </div>
-    <div class="details">
-        <table>
-            <tbody>
-            <tr>
-                <th>Name:</th>
-                <td>Warden</td>
-            </tr>
-            <tr>
-                <th>Hostel:</th>
-                <td>Hostel </td>
-            </tr>
-        </tbody>
-        </table>
+
+    <div class="container-sm complaint-box w-50">
+        <h2>Complaint-Box</h2>
     </div>
-    <h2>Complaint-Box</h2>
-    <div class="complaintBox">
+    <div class="container-sm complaint-box w-50">
+
         <% data.forEach((element) => { %>
-           <% element.complaint.forEach((item) => { %>
-            <div class="card">
-                <p>Name: <%= element.name %> SID: <%= element.sid %> Room No: <%= element.room %></p>
-                <p><%= item %></p>
+        <% element.complaint.forEach((item) => { %>
+
+        <div class="row ">
+            <div class="col-4">
+                <div id="list-example" class="list-group">
+                    <a class="list-group-item list-group-item-action"
+                        href="#list-<%= element.sid %>"><%= element.name %></a>
+                </div>
             </div>
-            <% }) %>
+            <div class="col-8">
+                <div class="scrollspy-example" tabindex="0">
+
+                    <h5 id="list-<%= element.sid %>">SID: <%= element.sid %></h5>
+                    <p>Room No: <%= element.room %> Query: <%= item %></p>
+
+                </div>
+            </div>
+        </div>
+        <% }) %>
         <% }) %>
     </div>
-    
+
+
+
 </div>
 
-
-
-</body>
-</html>
+<%- include('partials/footer') %>

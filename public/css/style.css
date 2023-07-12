@@ -1,0 +1,12 @@
+body {
+    background-color: #def3ff;
+    background-image: url("https://www.transparenttextures.com/patterns/always-grey.png");
+}
+.student-header a {
+    text-decoration: none;
+    color: white;
+}
+.complaint-box {
+    max-height: 50vh;
+    overflow: auto;
+}

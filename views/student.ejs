@@ -1,72 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script src="https://kit.fontawesome.com/01b0263b2c.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/student.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<%- include('partials/header') %>
     
-
-
-<div class="header"><h2>Student Profile</h2><button><a href="/">Logout</a></button></div>
-<div class="student centre">
-    <div class="centre">
-        <svg xmlns="http://www.w3.org/2000/svg" height="8em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
-    </div>
-    <div class="details">
-        <table>
-            <tbody>
-            <tr>
-                <th>Name:</th>
-                <td><%= name %></td>
-            </tr>
-            <tr>
-                <th>SID:</th>
-                <td><%= sid %></td>
-            </tr>
-            <tr>
-                <th>Branch:</th>
-                <td><%= branch %></td>
-            </tr>
-            <tr>
-                <th>Hostel:</th>
-                <td><%= hostel %></td>
-            </tr>
-            <tr>
-                <th>Room:</th>
-                <td><%= room %></td>
-            </tr>
-        </tbody>
-        </table>
-    </div>
-    <div>
-        <form action="/student" method="post">
-            <h3>Lodge a complaint</h3>
-            <input hidden type="number" name="studentid" value="<%= sid %>">
-            <textarea name="complaint" id="complaint" cols="30" rows="5"></textarea>
-            <div class="centre"><button type="submit">Submit</button></div>
-        </form>
-    </div>
-    <div class="contact">
-        <table>
-            <tr>
-                <th>Warden:</th>
-                <th>Gaurd:</th>
-                <th>Dean:</th>
-            </tr>
-            <tr>
-                <td>9876-XXXXXX</td>
-                <td>6789-XXXXXX</td>
-                <td>0172-XXXXXX</td>
-            </tr>
-        </table>
+<div class="student-header container-sm my-4">
+    <div class="row">
+        <div class="col"><h2>Student Profile</h2></div>
+        <div class="col"><button class="btn btn-danger float-end">
+        <a href="/">Logout</a></button>
+        </div>
     </div>
 </div>
+<div class="container-sm">
+    <div class="row">
+        <div class="w-50 col">
+            <table class="table table-striped">
+                <tbody>
+                <tr>
+                    <th>Name:</th>
+                    <td><%= name %></td>
+                </tr>
+                <tr>
+                    <th>SID:</th>
+                    <td><%= sid %></td>
+                </tr>
+                <tr>
+                    <th>Branch:</th>
+                    <td><%= branch %></td>
+                </tr>
+                <tr>
+                    <th>Hostel:</th>
+                    <td><%= hostel %></td>
+                </tr>
+                <tr>
+                    <th>Room:</th>
+                    <td><%= room %></td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <div class="float-end">
+                <form action="/student" method="post" id="complaint-form">
+                <h3>Lodge a complaint</h3>
+                <input hidden type="number" name="studentid" value="<%= sid %>">
+                <div class="form-floating">
+                    <textarea class="form-control" name="complaint" cols="30" placeholder="Leave a comment here" id="complaint" style="height: 100px"></textarea>
+                    <label for="complaint">Complaint</label>
+                </div>
+            
+                <button type="button" class="btn btn-info my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Submit
+                  </button>
+                  
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm?</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          Are sure want to register a complaint?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Confirm</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+            </div>
+            
+        </div>
+        <div class="mt-5">
+            <table class="table table-success table-striped">
+                <tr>
+                    <th>Warden:</th>
+                    <th>Gaurd:</th>
+                    <th>Dean:</th>
+                </tr>
+                <tr>
+                    <td>9876-XXXXXX</td>
+                    <td>6789-XXXXXX</td>
+                    <td>0172-XXXXXX</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+</div>
 
-
-
-</body>
-</html>
+<%- include('partials/footer') %>

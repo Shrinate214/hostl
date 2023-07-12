@@ -1,64 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css" /> 
-</head>
-<body>
- 
-  
-    <div class="box">
-      
-          <!-- Makes POST request to /login route -->
-          <form action="/login" method="POST">
-            <h1>Log In</h1>
-            <h3 <%= message %> style="color: yellow;" >Wrong Email or Password</h3>
-            <div class="input-box">
-                     
-                      <input type="email" class="form-control" name="username" required>
-                      <span>Email</span>
-                      <i></i>
-           </div>
-           <div class="input-box">
-                  
-                      <input type="password" class="form-control" name="password" required>
-                      <span>Password</span>    <i></i> </div>
-          <div class="input-box">
-           <label for="Singing_In_As">Signing Up as:</label>
-        
-             <select name="Positions" id="cars">
-               <option value="Student">Student</option>
-               <option value="Warden">Warden</option>
-                        
-            </select>
-          </div>
-        
-                    <button type="submit" class="btn btn-dark">Login</button>
-                    <div class="links">
-                      <a href="#">Sign In</a>
-                    </div>
-                  </form>
-                  
-        
-                
-          
-        </div>
-
-    <!-- <div class="col-sm-4">
-      <div class="card">
-        <div class="card-body">
-          <a class="btn btn-block" href="/auth/google" role="button">
-            <i class="fab fa-google"></i>
-            Sign In with Google
-          </a>
-        </div>
-      </div>
-    </div> -->
-
+<%- include('partials/header') %>
+<div class="mb-3 container-sm mt-3">
+  <div class="row">
+    <div class="col" >
+      <h1 class="">Hostel Allocating System</h1>
+    </div>
+    <div class="col">
+      <img class="w-50 float-end" src="img/Cover_PEC.png" alt="">
+    </div>
   </div>
 </div>
+<div class="mb-3 container-sm w-50 mt-3">
+  <!-- Makes POST request to /login route -->
+  <form action="/login" method="POST">
+    <h1>Log In</h1>
+    <div <%= message %> class="alert alert-danger my-4" role="alert">
+      Wrong Email or Password
+    </div>
+    <div class="">
+      <label class="form-label" for="username">Email</label>
+      <input id="username" type="email" class="form-control" name="username" required>
+    </div>
+    <div class="">
+      <label class="form-label" for="password">Password</label>
+      <input id="password" type="password" class="form-control" name="password" required>
+     </div>
+    <div class="row">
+      <div class="col-auto my-2">
+        <label class="col-form-label" for="cars">Signing Up as:</label>
+      </div>
+      <div class="col-auto my-2">
+        <select class="form-select" name="Positions" id="cars">
+        <option value="Student">Student</option>
+        <option value="Warden">Warden</option>
+        </select>
+      </div>
+      
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+</div>
+</div>
+</div>
+
 
 <%- include('partials/footer') %>
-
