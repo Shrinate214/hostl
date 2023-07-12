@@ -56,100 +56,8 @@ var con = mysql.createPool({
 let upload=multer({
     storage:storage
 }); 
-//------------ Get ----------------------//
 
-app.get("/", function (req, res) {
-    res.render("login", {
-        message: "hidden"
-    });
-})
-
-
-//------------ Post ---------------------//
-app.post('/student', async (req, res) => {
-    try {
-        const sid = req.body.studentid;
-        const complaint = req.body.complaint;
-        const data = await User.findOne({
-            sid: sid
-        });
-        data.complaint.push(complaint);
-        data.save()
-        res.render("student", {
-            name: data.name,
-            sid: data.sid,
-            branch: data.branch,
-            hostel: data.hostel,
-            room: data.room
-        });
-    } catch {
-        console.log("Error");
-    }
-
-});
-app.post("/register", function (req, res) {
-    const newUser = new User({
-        email: req.body.username,
-        password: req.body.password
-    });
-    newUser.save()
-        .then(() => {
-            console.log("fuck off");
-        })
-    res.render("login");
-})
-app.post("/login", async (req, res) => {
-    try {
-        const username = req.body.username;
-        const password = req.body.password;
-        const selectedValue = req.body.Positions;
-        const data = await User.findOne({
-            email: username
-        });
-
-        if (data.password === password && data.selectedValue === selectedValue) {
-            if (data.selectedValue == 'Student') {
-                res.render("student", {
-                    name: data.name,
-                    sid: data.sid,
-                    branch: data.branch,
-                    hostel: data.hostel,
-                    room: data.room
-                });
-            } else if (data.selectedValue == 'Warden') {
-                User.find().then((data) => {
-                    res.render('warden', {
-                        data: data
-                    });
-                })
-            }
-        } else {
-            res.render("login", {
-                message: ""
-            });
-        }
-    } catch (error) {
-        console.log("chud gya bro");
-    }
-});
-
-app.listen(port, function () {
-    console.log(`Weather app listening on port ${port}`);
-});
-app.get("/upload",function(req,res){
-    res.render("upload");
-});
-app.post('/import-csv',upload.single("import-csv"),(req,res) =>{
-console.log(req.file.path);
-const Year_chosen= req.body.Positions;
-uploadcsv(__dirname+"/"+req.file.path,Year_chosen,res);
-
-var file_path=req.file.path;
-});
-
-
-//??
-
+//------------ Functions ----------------//
 
 function uploadcsv(path,Year_chosen,res){
     let stream=fs.createReadStream(path);
@@ -227,7 +135,105 @@ select * from Saved_results order by room_number  ASC;
   });
 
 stream.pipe(filestream); 
-} 
+}
+
+//------------ Get ----------------------//
+
+app.get("/", function (req, res) {
+    res.render("login", {
+        message: "hidden"
+    });
+})
+
+// app.get("/upload",function(req,res){
+//     res.render("upload");
+// });
 
 
+//------------ Post ---------------------//
+app.post('/student', async (req, res) => {
+    try {
+        const sid = req.body.studentid;
+        const complaint = req.body.complaint;
+        const data = await User.findOne({
+            sid: sid
+        });
+        data.complaint.push(complaint);
+        data.save()
+        res.render("student", {
+            name: data.name,
+            sid: data.sid,
+            branch: data.branch,
+            hostel: data.hostel,
+            room: data.room
+        });
+    } catch {
+        console.log("Error");
+    }
 
+});
+app.post("/register", function (req, res) {
+    const newUser = new User({
+        email: req.body.username,
+        password: req.body.password
+    });
+    newUser.save()
+        .then(() => {
+            console.log("fuck off");
+        })
+    res.render("login");
+})
+app.post("/login", async (req, res) => {
+    try {
+        const username = req.body.username;
+        const password = req.body.password;
+        const selectedValue = req.body.Positions;
+        const data = await User.findOne({
+            email: username
+        });
+
+        if (data.password === password && data.selectedValue === selectedValue) {
+            if (data.selectedValue == 'Student') {
+                res.render("student", {
+                    name: data.name,
+                    sid: data.sid,
+                    branch: data.branch,
+                    hostel: data.hostel,
+                    room: data.room
+                });
+            } else if (data.selectedValue == 'Warden') {
+                User.find().then((data) => {
+                    res.render('warden', {
+                        data: data
+                    });
+                })
+            }
+        } else {
+            res.render("login", {
+                message: ""
+            });
+        }
+    } catch (error) {
+        res.render("login", {
+            message: ""
+        });
+    }
+});
+
+app.post('/import-csv',upload.single("import-csv"),(req,res) =>{
+    console.log(req.file.path);
+    const Year_chosen= req.body.Positions;
+    uploadcsv(__dirname+"/"+req.file.path,Year_chosen,res);
+    
+    var file_path=req.file.path;
+    });
+
+app.post('/upload', (req, res) => {
+    res.render("upload")
+});
+
+//------------------ Starting Server ----------------------//
+
+app.listen(port, function () {
+    console.log(`Server listening on port ${port}`);
+});
