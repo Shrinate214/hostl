@@ -40,15 +40,16 @@
             <div class="float-end">
                 <form action="/student" method="post" id="complaint-form">
                 <h3>Lodge a complaint</h3>
-                <input hidden type="number" name="studentid" value="<%= sid %>">
-                <div class="form-floating">
+                <div class=" row form-floating">
                     <textarea class="form-control" name="complaint" cols="30" placeholder="Leave a comment here" id="complaint" style="height: 100px"></textarea>
                     <label for="complaint">Complaint</label>
                 </div>
-            
-                <button type="button" class="btn btn-info my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <div class="">
+                    <button type="button" class="btn btn-info my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Submit
                   </button>
+                </div>
+                
                   
                   <!-- Modal -->
                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

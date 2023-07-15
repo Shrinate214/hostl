@@ -1,16 +1,15 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-var mysql=require("mysql2");
+var mysql = require("mysql2");
 const app = express();
 app.use(express.json());
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-const fs=require('fs')
+const fs = require('fs')
 const multer = require('multer')
 const csv = require('fast-csv');
 app.use(express.static("public"));
@@ -18,7 +17,8 @@ app.use(express.static("public"));
 const port = 3000;
 const path = require("path");
 const {
-    log
+    log,
+    time
 } = require('console');
 
 mongoose.connect("mongodb://127.0.0.1:27017/userDB", {
@@ -39,42 +39,42 @@ const User = new mongoose.model("User", UserSchema);
 var con = mysql.createPool({
     host: "localhost",
     user: "root",
-    password:"akshat123",
+    password: "@12345Vivek",
     database: "hostel",
     multipleStatements: true
-  });
-  // multer library configuration 
-  var storage = multer.diskStorage({
+});
+// multer library configuration 
+var storage = multer.diskStorage({
     destination: (req, file, callBack) => {
-        callBack(null, './uploads')    
+        callBack(null, './uploads')
     },
     filename: (req, file, callBack) => {
         callBack(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
     }
 })
- //??pass the stroage to multer library ka constructor means we store it locally for the time being
-let upload=multer({
-    storage:storage
-}); 
+//??pass the stroage to multer library ka constructor means we store it locally for the time being
+let upload = multer({
+    storage: storage
+});
 
 //------------ Functions ----------------//
 
-function uploadcsv(path,Year_chosen,res){
-    let stream=fs.createReadStream(path);
-    let DataCollection=[];
-    let filestream=csv
-.parse()
-.on('data',function(data){
-    DataCollection.push(data) //passes the extracted data from the stored file in uploads folder to itself 
-})
-.on('end',function(){
-    DataCollection.shift(); //passes the extracted data from the stored file in uploads folder to itself 
-con.getConnection((error,connection) => {
-    if(error) {
-        console.error(error);
-        return;
-    }
-    else{ query=`
+function uploadcsv(path, Year_chosen, res) {
+    let stream = fs.createReadStream(path);
+    let DataCollection = [];
+    let filestream = csv
+        .parse()
+        .on('data', function (data) {
+            DataCollection.push(data) //passes the extracted data from the stored file in uploads folder to itself 
+        })
+        .on('end', function () {
+            DataCollection.shift(); //passes the extracted data from the stored file in uploads folder to itself 
+            con.getConnection((error, connection) => {
+                if (error) {
+                    console.error(error);
+                    return;
+                } else {
+                    query = `
     INSERT INTO students_to_be_alloc (timeStamps, name, email_id, SID, city_state, fees_paid, batch, branch)
     VALUES ?;
     INSERT INTO distinct_students_to_be_alloc (timeStamps, name, email_id, SID, city_state, fees_paid, batch, branch)
@@ -116,48 +116,50 @@ select * from Saved_results order by room_number  ASC;
     
        `;
 
-  con.query(query,[DataCollection,Year_chosen], (error,results)=>
-        {
-    if(error){
-        console.log(error);
-             }
-    else      { console.log("Sexy Bancho");
-    const data = results[results.length - 1]; // Assuming the last result set contains the desired data
+                    con.query(query, [DataCollection, Year_chosen], (error, results) => {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            console.log("Sexy Bancho");
+                            const data = results[results.length - 1]; // Assuming the last result set contains the desired data
 
-    // Render the EJS template and pass the data as a variable
-    res.render('allocation_results', { data: data });
-             }
+                            // Render the EJS template and pass the data as a variable
+                            res.render('allocation_results', {
+                                data: data
+                            });
+                        }
 
+                    });
+                }
+            });
+            fs.unlinkSync(path);
         });
-      }
-    });
- fs.unlinkSync(path); 
-  });
 
-stream.pipe(filestream); 
+    stream.pipe(filestream);
 }
 
 //------------ Get ----------------------//
 
 app.get("/", function (req, res) {
     res.render("login", {
-        message: "hidden"
+        message: "hidden",
+        alert: "hidden"
     });
 })
 
-// app.get("/upload",function(req,res){
-//     res.render("upload");
-// });
+app.get("/register", function (req, res) {
+    res.render("register", {
+        message: "hidden",
+        exist: "hidden"
+    })
+});
 
 
 //------------ Post ---------------------//
 app.post('/student', async (req, res) => {
     try {
-        const sid = req.body.studentid;
         const complaint = req.body.complaint;
-        const data = await User.findOne({
-            sid: sid
-        });
+        const data = app.get('data');
         data.complaint.push(complaint);
         data.save()
         res.render("student", {
@@ -172,16 +174,38 @@ app.post('/student', async (req, res) => {
     }
 
 });
-app.post("/register", function (req, res) {
-    const newUser = new User({
-        email: req.body.username,
-        password: req.body.password
-    });
-    newUser.save()
-        .then(() => {
-            console.log("fuck off");
-        })
-    res.render("login");
+app.post("/register", async (req, res) => {
+    const data = await User.findOne({
+        sid: req.body.sid
+    }).then(async(data) => {
+        if (data) {
+            res.render("register", {
+                message: "hidden",
+                exist: ""
+            })
+        } else {
+            if (req.body.password === req.body.cpassword) {
+                await User.create({
+                    name: req.body.username,
+                    email: req.body.email,
+                    sid: req.body.sid,
+                    password: req.body.password,
+                    selectedValue: "Student"
+                });
+                console.log("User Created");
+                res.render("login", {
+                    message: "hidden",
+                    alert: ""
+                });
+            } else {
+                res.render("register", {
+                    message: "",
+                    exist: "hidden"
+                })
+            }
+        }
+    })
+
 })
 app.post("/login", async (req, res) => {
     try {
@@ -191,7 +215,7 @@ app.post("/login", async (req, res) => {
         const data = await User.findOne({
             email: username
         });
-
+        app.set('data', data);
         if (data.password === password && data.selectedValue === selectedValue) {
             if (data.selectedValue == 'Student') {
                 res.render("student", {
@@ -210,23 +234,25 @@ app.post("/login", async (req, res) => {
             }
         } else {
             res.render("login", {
-                message: ""
+                message: "",
+                alert: "hidden"
             });
         }
     } catch (error) {
         res.render("login", {
-            message: ""
+            message: "",
+            alert: "hidden"
         });
     }
 });
 
-app.post('/import-csv',upload.single("import-csv"),(req,res) =>{
+app.post('/import-csv', upload.single("import-csv"), (req, res) => {
     console.log(req.file.path);
-    const Year_chosen= req.body.Positions;
-    uploadcsv(__dirname+"/"+req.file.path,Year_chosen,res);
-    
-    var file_path=req.file.path;
-    });
+    const Year_chosen = req.body.Positions;
+    uploadcsv(__dirname + "/" + req.file.path, Year_chosen, res);
+
+    var file_path = req.file.path;
+});
 
 app.post('/upload', (req, res) => {
     res.render("upload")
