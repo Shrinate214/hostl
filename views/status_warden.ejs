@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deallocate</title>
+</head>
+    <body>
+  <%- include('partials/header') %>
+
+<div class="container-sm">
+  <form action="/room_status" method="post" >
+    <div class="input-box"> <label for="Year">Finding which rooms are :</label>
+
+      <select name="room_status" id="Year" required>
+        <option value="available">available</option>
+        <option value="unavailable">unavailable</option>
+        
+
+      </select></div>
+
+    <div class="d-grid">
+      <input type="submit" class="btn btn-dark" value="Store Select" />
+    </div>
+  </form>
+</div>
+
+</div>
+
+<%- include('partials/footer') %>
+</body>
+</html>

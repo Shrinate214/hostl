@@ -1,0 +1,32 @@
+<html>
+<head>
+  <title>Data Page</title>
+</head>
+<body>
+  <h1>Available rooms</h1>
+
+  <% if (data && data.length > 0) { %>
+    <table>
+      <tr>
+        <th>Room Number/th>
+        <th>Block</th>
+        <th>Floor</th>
+        <th>Capacity</th>
+        <th>Status</th> <!-- Add more table columns as needed -->
+      </tr>
+      <% data.forEach(function(item) { %>
+        <tr>
+          <td><%= item.room_number %></td>
+          <td><%= item.block %></td>
+          <td><%= item.floor %></td>
+          <td><%= item.capacity %></td>
+          <td><%= item.room_status %></td> 
+          <!-- Add more table cells as needed -->
+        </tr>
+      <% }); %>
+    </table>
+  <% } else { %>
+    <p>No data available.</p>
+  <% } %>
+</body>
+</html>

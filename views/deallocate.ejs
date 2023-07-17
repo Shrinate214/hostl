@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deallocate</title>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+<div class="container-sm">
+  <form action="/deallocated" method="post" >
+    <div class="input-box"> <label for="Year">De-allocating for the Class of :</label>
+
+      <select name="deallocated" id="Year" required>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+        <option value="2026">2026</option>
+        <option value="2027">2027</option>
+
+      </select></div>
+
+    <div class="d-grid">
+      <input type="submit" class="btn btn-dark" value="Store Select" />
+    </div>
+  </form>
+</div>
+
+</div>
+
+<%- include('partials/footer') %>
+</body>
+</html>
