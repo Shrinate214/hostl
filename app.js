@@ -39,7 +39,7 @@ const User = new mongoose.model("User", UserSchema);
 var con = mysql.createPool({
     host: "localhost",
     user: "root",
-    password:"akshat123",
+    password:"@12345Vivek",
     database: "hostel",
     multipleStatements: true
   });
@@ -141,13 +141,17 @@ stream.pipe(filestream);
 
 app.get("/", function (req, res) {
     res.render("login", {
-        message: "hidden"
+        message: "hidden",
+        alert: "hidden"
     });
 })
 
-// app.get("/upload",function(req,res){
-//     res.render("upload");
-// });
+app.get("/register", function (req, res) {
+    res.render("register", {
+        message: "hidden",
+        exist: "hidden"
+    })
+});
 app.get("/deallocate", function (req, res) {
     res.render("deallocate");
 })
@@ -174,16 +178,38 @@ app.post('/student', async (req, res) => {
     }
 
 });
-app.post("/register", function (req, res) {
-    const newUser = new User({
-        email: req.body.username,
-        password: req.body.password
-    });
-    newUser.save()
-        .then(() => {
-            console.log("fuck off");
-        })
-    res.render("login");
+app.post("/register", async (req, res) => {
+    const data = await User.findOne({
+        sid: req.body.sid
+    }).then(async(data) => {
+        if (data) {
+            res.render("register", {
+                message: "hidden",
+                exist: ""
+            })
+        } else {
+            if (req.body.password === req.body.cpassword) {
+                await User.create({
+                    name: req.body.username,
+                    email: req.body.email,
+                    sid: req.body.sid,
+                    password: req.body.password,
+                    selectedValue: "Student"
+                });
+                console.log("User Created");
+                res.render("login", {
+                    message: "hidden",
+                    alert: ""
+                });
+            } else {
+                res.render("register", {
+                    message: "",
+                    exist: "hidden"
+                })
+            }
+        }
+    })
+
 })
 app.post("/login", async (req, res) => {
     try {
@@ -193,7 +219,7 @@ app.post("/login", async (req, res) => {
         const data = await User.findOne({
             email: username
         });
-
+        app.set('data', data);
         if (data.password === password && data.selectedValue === selectedValue) {
             if (data.selectedValue == 'Student') {
                 res.render("student", {
@@ -212,12 +238,14 @@ app.post("/login", async (req, res) => {
             }
         } else {
             res.render("login", {
-                message: ""
+                message: "",
+                alert: "hidden"
             });
         }
     } catch (error) {
         res.render("login", {
-            message: ""
+            message: "",
+            alert: "hidden"
         });
     }
 });
