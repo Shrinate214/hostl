@@ -103,21 +103,22 @@ con.getConnection((error,connection) => {
     ON s.SID = dt.sid
     SET s.Room_assigned = dt.room_number; 
     
-    UPDATE hostel_rooms AS h
+       UPDATE hostel_rooms AS h
     JOIN distinct_students_to_be_alloc AS s ON s.room_assigned = h.room_number
     SET h.room_status = 'unavailable';
-    
+  delete from Saved_results;  
  insert into Saved_results (name ,email_id ,SID ,batch , room_number,floor,block)    
  SELECT distinct_students_to_be_alloc.name, distinct_students_to_be_alloc.email_id, distinct_students_to_be_alloc.SID, 
     distinct_students_to_be_alloc.batch, hostel_rooms.room_number, hostel_rooms.floor, hostel_rooms.block
     FROM distinct_students_to_be_alloc
-    JOIN hostel_rooms ON distinct_students_to_be_alloc.Room_assigned = hostel_rooms.room_number;
+    JOIN hostel_rooms ON distinct_students_to_be_alloc.Room_assigned = hostel_rooms.room_number and batch=?;
 select * from Saved_results order by room_number  ASC;
     
        `;
 
-  con.query(query,[DataCollection,Year_chosen], (error,results)=>
+  con.query(query,[DataCollection,Year_chosen,Year_chosen], (error,results)=>
         {
+        
     if(error){
         console.log(error);
              }
