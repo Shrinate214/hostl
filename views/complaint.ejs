@@ -1,0 +1,32 @@
+<%- include("partials/header") %>
+
+<div class="student-header">
+    <div class="row">
+        <div class="col">
+            <h2>Complaint/Query</h2>
+        </div>
+        <div class="col">
+            <button style="background-color: rgba(0, 0, 0, 0); color: white; border: none;" class="float-end" onClick="previous()" 
+        id="backward" >Back</button>
+        </div>
+
+    </div>
+</div>
+
+<div class="margin"></div>
+
+<div class="container-sm w-50">
+    <div>
+        <h2>Write your complaint or query here.</h2>
+        <form action="/complaint" method="post">
+            <div>
+                <textarea class="form-control" name="complaint" id="complaint" cols="30" rows="10"></textarea>
+            </div>
+            <div class="w-25 m-auto">
+                <button class="btn m-3 btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<%- include("partials/footer") %>

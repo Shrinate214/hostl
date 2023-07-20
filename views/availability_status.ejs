@@ -1,12 +1,22 @@
-<html>
-<head>
-  <title>Data Page</title>
-</head>
-<body>
-  <h1>Available rooms</h1>
+<%- include("partials/header") %>
 
-  <% if (data && data.length > 0) { %>
-    <table>
+<div class="student-header">
+  <div class="row">
+    <div class="col">
+      <h2>Available rooms</h2>
+    </div>
+    <div class="col">
+      <button style="background-color: rgba(0, 0, 0, 0); color: white; border: none;" class="float-end"
+        onClick="previous()" id="backward">Back</button>
+    </div>
+  </div>
+</div>
+
+<div class="margin"></div>
+  <h1></h1>
+
+  <% if (data.length > 0) { %>
+    <table class="table table-striped w-75 m-auto">
       <tr>
         <th>Room Number/th>
         <th>Block</th>
@@ -28,5 +38,4 @@
   <% } else { %>
     <p>No data available.</p>
   <% } %>
-</body>
-</html>
+  <%- include("partials/footer") %>

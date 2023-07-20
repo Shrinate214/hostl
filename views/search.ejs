@@ -1,0 +1,47 @@
+<%- include('partials/header'); %>
+
+<div class="student-header">
+    <div class="row">
+        <div class="col"><h2>Search here</h2></div>
+        <div class="col"><button style="background-color: rgba(0, 0, 0, 0); color: white; border: none;" class="float-end" onClick="previous()" 
+        id="backward" >Back</button></div>
+    </div>
+    
+</div>
+
+<div class="margin"></div>
+
+<div class="container-sm">
+    <form onsubmit="return searching()">
+        <input placeholder="Search name" type="search" name="name" id="name" onkeyup="searching()">
+        <input placeholder="Search SID" type="search" name="sid" id="sid" onkeyup="searching()">
+        <input type="submit" value="Search">
+    </form>
+
+    <h3 class="text-white mt-3">
+        Student List
+    </h3>
+
+    <% if (data && data.length > 0) { %>
+    <table class="table table-striped w-100">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>SID</th>
+            <th>Batch</th>
+            <th>Room-number</th>
+            <!-- Add more table columns as needed -->
+        </tr>
+    </table>
+    <% } else { %>
+    <p>No data available.</p>
+    <% } %>
+</div>
+
+
+<script>
+
+</script>
+
+
+<%- include('partials/footer'); %>

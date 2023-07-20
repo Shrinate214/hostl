@@ -1,53 +1,67 @@
 <%- include('partials/header') %>
-<div class="mb-3 container-sm mt-3">
-  <div class="row">
-    <div class="col" >
-      <h1 class="">Hostel Allocating System</h1>
-    </div>
-    <div class="col">
-      <img class="w-50 float-end" src="img/Cover_PEC.png" alt="">
+
+<div class="header">
+  <div class="mb-3 container-sm mt-3" style=" color: rgb(255, 255, 255);">
+    <div class="row">
+      <div class="col">
+        <h2 class="">Hostel Allocating System</h2>
+      </div>
+      <div class="col">
+        <img class="float-end" src="img/download-removebg-preview.png" >
+      </div>
     </div>
   </div>
 </div>
-<div class="mb-3 container-sm w-50 mt-3">
-  <!-- Makes POST request to /login route -->
-  <form action="/login" method="POST">
-    <h1>Log In</h1>
-    <div <%= message %> class="alert alert-danger my-4" role="alert">
-      Wrong Email or Password
-    </div>
-    <div class="">
-      <label class="form-label" for="username">Email</label>
-      <input id="username" type="email" class="form-control" name="username" required>
-    </div>
-    <div class="">
-      <label class="form-label" for="password">Password</label>
-      <input id="password" type="password" class="form-control" name="password" required>
-     </div>
-    <div class="row">
-      <div class="col-auto my-2">
-        <label class="col-form-label" for="cars">Signing Up as:</label>
-      </div>
-      <div class="col-auto my-2">
-        <select class="form-select" name="Positions" id="cars">
-        <option value="Student">Student</option>
-        <option value="Warden">Warden</option>
-        </select>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Login</button>
-    <button class="btn btn-warning student-header"><a href="/register">Register</a></button>
-  </form>
-  <figure <%= alert %> class="notification">
-    <div class="notification_body">
-    
-    Your account has been created! &#128640;
-    </div>
-    <div class="notification_progress"></div>
-  </figure>
-</div>
-</div>
-</div>
 
+<div class="margin"></div>
 
-<%- include('partials/footer') %>
+<div class="login row container-sm w-50 m-auto bg-img p-0 rounded-5 mt-5">
+  
+  <div class="col text-white">
+    <div class="mb-5 container-sm w-50 mt-5">
+      <form action="/login" method="POST">
+        <div>
+          <h1>Log In</h1>
+        </div>
+        
+        <div <%= message %> class="alert alert-danger my-4" role="alert">
+          Wrong Email or Password
+        </div>
+        <div class="">
+          <label class="form-label" for="username">Email</label>
+          <input id="username" type="email" class="form-control" name="username" required>
+        </div>
+        <div class="">
+          <label class="form-label" for="password">Password</label>
+          <input id="password" type="password" class="form-control" name="password" required>
+        </div>
+        <div class="row">
+          <div class="col-auto my-2">
+            <label class="col-form-label" for="cars">Signing Up as:</label>
+          </div>
+          <div class="col-auto my-2">
+            <select class="form-select" name="Positions" id="cars">
+              <option value="Student">Student</option>
+              <option value="Warden">Warden</option>
+            </select>
+          </div>
+        </div>
+        <div style="text-align: center;">
+          <button type="submit" class="btn btn-primary">Login</button><br>
+          <a style="color: rgb(255, 255, 255);" href="/register">Sign Up!</a>
+        </div>
+        
+      </form>
+      
+      <figure <%= alert %> class="notification">
+        <div class="notification_body">
+
+          Your account has been created! &#128640;
+        </div>
+        <div class="notification_progress"></div>
+      </figure>
+    </div>
+
+  </div>
+
+  <%- include('partials/footer') %>

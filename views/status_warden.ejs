@@ -1,25 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deallocate</title>
-</head>
-    <body>
-  <%- include('partials/header') %>
+<%- include('partials/header') %>
 
-<div class="container-sm">
+<div class="student-header">
+  <div class="row">
+    <div class="col">
+      <h2>Room status</h2>
+    </div>
+    <div class="col">
+      <button style="background-color: rgba(0, 0, 0, 0); color: white; border: none;" class="float-end"
+        onClick="previous()" id="backward">Back</button>
+    </div>
+  </div>
+</div>
+
+<div class="margin"></div>
+
+<div class="container-sm m-auto w-50">
   <form action="/room_status" method="post" >
-    <div class="input-box"> <label for="Year">Finding which rooms are :</label>
+    <div class="input-box"> <label for="Year"><h5>Finding which rooms are :</h5></label>
 
-      <select name="room_status" id="Year" required>
+      <select class="form-select" name="room_status" id="Year" required>
         <option value="available">available</option>
         <option value="unavailable">unavailable</option>
         
 
       </select></div>
 
-    <div class="d-grid">
+    <div class="d-grid mt-3">
       <input type="submit" class="btn btn-dark" value="Store Select" />
     </div>
   </form>
@@ -28,5 +34,3 @@
 </div>
 
 <%- include('partials/footer') %>
-</body>
-</html>

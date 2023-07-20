@@ -1,12 +1,27 @@
-<html>
-<head>
-  <title>Data Page</title>
-</head>
-<body>
-  <h1>Data Page</h1>
+<%- include("partials/header") %>
+
+<div class="student-header">
+  <div class="row">
+    <div class="col">
+      <h2>Allocation result</h2>
+    </div>
+    <div class="col">
+      <button style="background-color: rgba(0, 0, 0, 0); color: white; border: none;" class="float-end"
+        onClick="previous()" id="backward">Back</button>
+    </div>
+  </div>
+</div>
+
+<div class="margin"></div>
+
+<div id="print" class="w-75 m-auto text-white">
+  <title>hostel student data</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <h1>Allocation result:</h1>
 
   <% if (data && data.length > 0) { %>
-    <table>
+    <table class="table table-striped">
       <tr>
         <th>Name</th>
         <th>Email</th>
@@ -33,5 +48,11 @@
   <% } else { %>
     <p>No data available.</p>
   <% } %>
-</body>
-</html>
+</div>
+  <div class="w-50">
+    <button class="float-end btn btn-dark " onclick="printDiv('print')">Print</button>
+  </div>
+  
+
+
+<%- include("partials/footer") %>

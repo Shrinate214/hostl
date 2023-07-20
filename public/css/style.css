@@ -1,11 +1,29 @@
 body {
-    background-color: #def3ff;
-    background-image: url("https://www.transparenttextures.com/patterns/always-grey.png");
+    background-color: #ebe6db;
+    /* #cfbcab */
+    /* #b481ff */
+
+background-image: url("https://www.transparenttextures.com/patterns/black-felt.png");
+
+}
+
+.student-header {
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.511);
+    width: 100%;
+    color: white;
+    padding: 20px 10vw 0 10vw;
 }
 
 .student-header a {
-    text-decoration: none;
     color: white;
+    text-decoration: none;
+}
+
+.student-header a:hover {
+    color: #ea1538;
+    transition: .3s;
 }
 
 .complaint-box {
@@ -72,4 +90,29 @@ body {
     to {
         transform: scaleX(1);
     }
+}
+
+.bg-img {
+    /* background: rgb(194,13,221);
+    background: linear-gradient(306deg, rgba(194,13,221,1) 35%, rgba(194,13,221,1) 58%, rgba(192,0,255,1) 71%, rgba(192,0,255,1) 87%); */
+    /* background-color: #bb9359; */
+    background-color: #9f8e77;
+} 
+
+.header {
+    background-color: rgba(0, 0, 0, 0.511);
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.header img {
+    width: 80px;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+.margin {
+    width: 100%;
+    margin-bottom: 120px;
 }

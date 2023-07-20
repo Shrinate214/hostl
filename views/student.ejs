@@ -1,17 +1,29 @@
 <%- include('partials/header') %>
     
-<div class="student-header container-sm my-4">
+<div class="student-header ">
     <div class="row">
-        <div class="col"><h2>Student Profile</h2></div>
-        <div class="col"><button class="btn btn-danger float-end">
-        <a href="/">Logout</a></button>
+        <div class="col-6"><h2>Student Profile</h2></div>
+        <div class=" col">
+            <form id="complaint-ren" action="/complaint-ren" method="post">
+                <a href="" onclick="btnToLink(event)">Complaint</a>
+            </form>
+        </div>
+        <div class="col">
+            <a href="/checkAlloat">Allotment</a>
+        </div>
+        <div class="col">
+            <a href="/search">Search</a>
+        </div>
+        <div class="col">
+        <a href="/">Logout</a>
         </div>
     </div>
 </div>
+<div class="margin"></div>
 <div class="container-sm">
     <div class="row">
         <div class="w-50 col">
-            <table class="table table-striped">
+            <table class=" w-50 m-auto table table-striped">
                 <tbody>
                 <tr>
                     <th>Name:</th>
@@ -21,59 +33,14 @@
                     <th>SID:</th>
                     <td><%= sid %></td>
                 </tr>
-                <tr>
-                    <th>Branch:</th>
-                    <td><%= branch %></td>
-                </tr>
-                <tr>
-                    <th>Hostel:</th>
-                    <td><%= hostel %></td>
-                </tr>
-                <tr>
-                    <th>Room:</th>
-                    <td><%= room %></td>
-                </tr>
             </tbody>
+            
             </table>
-        </div>
-        <div class="col">
-            <div class="float-end">
-                <form action="/student" method="post" id="complaint-form">
-                <h3>Lodge a complaint</h3>
-                <div class=" row form-floating">
-                    <textarea class="form-control" name="complaint" cols="30" placeholder="Leave a comment here" id="complaint" style="height: 100px"></textarea>
-                    <label for="complaint">Complaint</label>
-                </div>
-                <div class="">
-                    <button type="button" class="btn btn-info my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Submit
-                  </button>
-                </div>
-                
-                  
-                  <!-- Modal -->
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm?</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          Are sure want to register a complaint?
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary">Confirm</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-            </div>
             
         </div>
-        <div class="mt-5">
+        
+        
+        <div class="w-50" style="position: fixed; bottom: 0;left: 60vh;">
             <table class="table table-success table-striped">
                 <tr>
                     <th>Warden:</th>
@@ -90,5 +57,12 @@
     </div>
     
 </div>
+<figure <%= alert %> class="notification">
+    <div class="notification_body">
+  
+      Complaint lodged! &#128640;
+    </div>
+    <div class="notification_progress"></div>
+  </figure>
 
 <%- include('partials/footer') %>

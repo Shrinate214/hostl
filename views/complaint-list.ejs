@@ -1,0 +1,59 @@
+<%- include("partials/header") %>
+
+<div class="student-header">
+    <div class="row">
+        <div class="col">
+            <h2>Complaint list</h2>
+        </div>
+        <div class="col">
+            <button style="background-color: rgba(0, 0, 0, 0); color: white; border: none;" class="float-end"
+                onClick="previous()" id="backward">Back</button>
+        </div>
+    </div>
+</div>
+<div class="margin"></div>
+<div>
+    <table id="list" class="table table-striped w-50 m-auto">
+        <tr>
+            <th>Sr.</th>
+            <th>SID</th>
+            <th>Complaints</th>
+            <th>Time</th>
+        </tr>
+
+    </table>
+</div>
+<div class="margin"></div>
+
+<script>
+    var table = document.getElementById("list");
+    let complaint = [];
+    let i = 1;
+    let request = async () => {
+        const response = await fetch('http://localhost:3000/api');
+        const data = await response.json();
+        complaint = data;
+        complaint.sort(function (x, y) {
+            return y.timestamp - x.timestamp;
+        })
+        complaint.forEach(element => {
+            table.innerHTML += "<tr><td>" + i + "</td><td>" + element.sid + "</td><td>" + element
+                .complaint + "</td><td>" + msToTime(new Date().getTime()-element.timestamp) + " ago </td></tr>"
+            i++;
+        });
+    }
+    request();
+
+    function msToTime(ms) {
+  let seconds = (ms / 1000).toFixed(1);
+  let minutes = (ms / (1000 * 60)).toFixed(1);
+  let hours = (ms / (1000 * 60 * 60)).toFixed(1);
+  let days = (ms / (1000 * 60 * 60 * 24)).toFixed(1);
+  if (seconds < 60) return seconds + " sec";
+  else if (minutes < 60) return minutes + " min";
+  else if (hours < 24) return hours + " hrs";
+  else return days + " days"
+}
+</script>
+
+<%- include("partials/footer") %>

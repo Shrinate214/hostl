@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+
+<div class="student-header">
+    <div class="row">
+        <div class="col"><h2>Allotment Result:</h2></div>
+        <div class="col"><button style="background-color: rgba(0, 0, 0, 0); color: white; border: none;" class="float-end" onClick="previous()" 
+            id="backward" >Back</button></div>
+    </div>
+    
+</div>
+<div class="margin"></div>
+<div class=" w-50 container-sm">
+    <% if(data.length > 0 && data[0].Room_assigned != null) { %>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>Name:</th>
+                    <td><%= data[0].name %></td>
+                </tr>
+                <tr>
+                    <th>Room:</th>
+                    <td><%= data[0].Room_assigned %></td>
+                </tr>
+            </tbody>
+        </table>
+    <% } else { %>
+        <h1>No room has allocated yet.</h1>
+        <h3>contact your warden</h3>
+    <% } %>
+</div>
+
+<%- include('partials/footer') %>

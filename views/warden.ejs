@@ -1,69 +1,32 @@
 <%- include('partials/header') %>
 
-<div class="student-header container-sm my-4">
+<div class="student-header">
     <div class="row">
-        <div class="col">
+        <div class="col-6">
             <h2>Warden server</h2>
         </div>
-        <div class="col"><button class="btn btn-danger float-end">
-                <a href="/">Logout</a></button>
-        </div>
-    </div>
-</div>
-<div class="container-sm">
-    <div class="row">
         <div class="col">
-            <table class="table table-striped">
-                <tbody>
-                    <tr>
-                        <th>Name:</th>
-                        <td>Warden</td>
-                    </tr>
-                    <tr>
-                        <th>Hostel:</th>
-                        <td>Hostel </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col">
-            <form action="/upload" method="post">
-                <button type="submit" class="btn btn-warning float-end">Allocation Set-up</button>
+            <form action="/upload" method="post" id="AllocationSetUp">
+                <a href="" onclick="btnToLink2(event)">Alloc Set-up</a>
             </form>
         </div>
-
-    </div>
-
-    <div class="container-sm complaint-box w-50">
-        <h2>Complaint-Box</h2>
-    </div>
-    <div class="border border-black container-sm complaint-box w-50">
-
-        <% data.forEach((element) => { %>
-        <% element.complaint.forEach((item) => { %>
-
-        <div class="row ">
-            <div class="col-4">
-                <div id="list-example" class="list-group">
-                    <a class="list-group-item list-group-item-action"
-                        href="#list-<%= element.sid %>"><%= element.name %></a>
-                </div>
-            </div>
-            <div class="col-8">
-                <div class="scrollspy-example" tabindex="0">
-
-                    <h5 id="list-<%= element.sid %>">SID: <%= element.sid %></h5>
-                    <p>Room No: <%= element.room %> Query: <%= item %></p>
-
-                </div>
-            </div>
+        <div class="col">
+            <form id="comp" action="/complaint-x" method="post">
+                <a href="" onclick="btnToLink4(event)">Complaints</a>
+            </form>
         </div>
-        <% }) %>
-        <% }) %>
+        <div class="col">
+            <form action="/status" method="post" id="roomstatus">
+                <a href="" onclick="btnToLink3(event)">Room-Status</a>
+            </form>
+        </div>
+        <div class="col">
+            <a href="/">Logout</a>
+        </div>
+        
     </div>
-
-
-
 </div>
+<div class="margin"></div>
+
 
 <%- include('partials/footer') %>
