@@ -4,8 +4,9 @@
 }
 
 body {
-    background-color: #ccc1aa;
-background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
+    background-color: #292929;
+background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 

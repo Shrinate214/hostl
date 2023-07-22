@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <style>
     @media (max-width:767px) {
       #paren {
@@ -30,6 +32,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" type="text/css" href="css/land_page.css" />
 </head>
 
 <body>
@@ -40,7 +43,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="css/land_page.css" />
+
   </head>
 
   <body>
@@ -65,7 +68,7 @@
                 <li>
                   <a href="/about"> About</a>
                 </li>
-                <li> <a href="/">Log In</a> </li>
+                <li> <a href="/login">Log In</a> </li>
                 <li> <a href="/register">Register</a> </li>
                 <li> </li>
               </ul>
@@ -74,12 +77,12 @@
         </div>
       </div>
       <div class="contain px-4 pt-5 mb-5 text-center" style="text-align: center;">
-              <div style="background-color: aliceblue;" class="rounded-pill w-50 p-5 m-auto">
-                <h1 class="display-4 fw-bold text-body-emphasis"><span style="color:rgb(106, 0, 255); ">Meet the Creators</span>
-        </h1>
+        <div style="background-color: #292929;background-image: url('https://www.transparenttextures.com/patterns/gplay.png');" class=" w-50 p-5 m-auto">
+          <h1 class="display-4 fw-bold text-body-emphasis"><span class="rounded-5 typed3" style="color:rgb(255, 255, 255);"></span>
+          </h1>
 
-              </div>
-        
+        </div>
+
         <div class="container px-4 pt-5 my-5 text-center " style="  z-index: 4; position: relative;
               top: 0;">
           <div class="card" style="--clr:#009g88">
@@ -87,24 +90,33 @@
             <div class="content">
               <h3 style="color: rgb(106, 0, 255); margin-left: 40px; font-style: italic;">Akshat Shrinate</h3>
               <p><span style="color:rgb(132, 0, 255);">
-                Hello! I'm currently pursuing B.Tech and I'm passionate about full-stack development. I love creating innovative solutions that make a positive impact.</span>
+                  Hello! I'm currently pursuing B.Tech and I'm passionate about full-stack development. I love creating
+                  innovative solutions that make a positive impact.</span>
               </p>
             </div>
           </div>
           <div class="card" style="--clr:#009g88">
             <div class="imgbx " style="align-items: center;"><img src="img/vpic.jpg"></div>
             <div class="content">
-              <h3 style="color: rgb(106, 0, 255); margin-left: 40px; font-style: italic;">Vivek 
+              <h3 style="color: rgb(106, 0, 255); margin-left: 40px; font-style: italic;">Vivek
                 Jaiswal</h3>
               <p><span style="color:rgb(132, 0, 255);">
-                Hello! I'm currently pursuing B.Tech and I'm passionate about full-stack development. I love creating innovative solutions that make a positive impact.</span>
+                  Hello! I'm currently pursuing B.Tech and I'm passionate about full-stack development. I love creating
+                  innovative solutions that make a positive impact.</span>
               </p>
             </div>
           </div>
         </div>
       </div>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+      <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+      <script>
+        var typed = new Typed('.typed3', {
+          strings: ['Meet the Creators'],
+          typeSpeed: 70,
+          backSpeed: 10,
+          loop: true
+        });
+      </script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
       </script>

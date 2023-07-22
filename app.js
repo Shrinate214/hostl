@@ -29,24 +29,25 @@ const UserSchema = {
     password: String,
     name: String,
     sid: Number,
-    hostel: String,
-    room: Number,
     branch: String,
     complaint: Array,
     selectedValue: String
 };
+const complaintSchema = {
+    complaint: Array
+}
 const User = new mongoose.model("User", UserSchema);
 var con = mysql.createPool({
-    host: "localhost",
-    user: "root",
-    password: "@12345Vivek",
-    database: "hostel",
+    host: "sql6.freesqldatabase.com",
+    user: "sql6634222",
+    password: "xGBIcrq3BP",
+    database: "sql6634222",
     multipleStatements: true
 });
 // multer library configuration 
 var storage = multer.diskStorage({
     destination: (req, file, callBack) => {
-        callBack(null, './uploads')
+        callBack(null, './')
     },
     filename: (req, file, callBack) => {
         callBack(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
@@ -140,8 +141,10 @@ select * from Saved_results order by room_number  ASC;
 }
 
 //------------ Get ----------------------//
-
-app.get("/", function (req, res) {
+app.get("/", (req, res) => {
+    res.render("landing_page");
+});
+app.get("/login", function (req, res) {
     res.render("login", {
         message: "hidden",
         alert: "hidden"
@@ -238,7 +241,7 @@ app.post('/complaint', async (req, res) => {
         const sid = data.sid;
         User.findOne({
             sid: "86664976"
-        }).then((data) => {
+        }).then(async (data) => {
             data.complaint.push({
                 complaint: complaint,
                 timestamp: date,
