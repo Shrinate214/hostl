@@ -38,10 +38,10 @@ const complaintSchema = {
 }
 const User = new mongoose.model("User", UserSchema);
 var con = mysql.createPool({
-    host: "sql6.freesqldatabase.com",
-    user: "sql6634222",
-    password: "xGBIcrq3BP",
-    database: "sql6634222",
+    host: "localhost",
+    user: "root",
+    password: "@12345Vivek",
+    database: "hostel",
     multipleStatements: true
 });
 // multer library configuration 

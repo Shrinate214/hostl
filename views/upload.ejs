@@ -3,7 +3,7 @@
 <div class="student-header">
   <div class="row">
     <div class="col">
-      <h2>Allocation Set Up</h2>
+      <h2 class="text-white">Allocation Set Up</h2>
     </div>
     <div class="col">
       <button style="background-color: rgba(0, 0, 0, 0); color: white; border: none;" class="float-end"
@@ -16,16 +16,16 @@
 
 <div class="row">
   <div class="col"><div class="container-sm w-50 m-auto">
-    <h1>Allocation</h1>
+    <h1 class="text-white">Allocation</h1>
   <form action="/import-csv" method="post" enctype="multipart/form-data">
     <div class=" ">
       <div class="mt-3">
-        <label for="upload"><h5>Upload student data :</h5></label>
+        <label for="upload"><h5 class="text-white">Upload student data :</h5></label>
         <input id="upload" type="file" class="form-control" name="import-csv" accept=".csv" />
       </div>
       <div class="mt-3">
         <label for="cars1">
-          <h5>Allocating for the Class of :</h5>
+          <h5 class="text-white">Allocating for the Class of :</h5>
           
         </label>
         <select class="form-select" name="Positions" id="cars1" required>
@@ -36,15 +36,15 @@
         </select>
       </div>
       <div class="d-grid mt-3">
-        <input type="submit" class="btn btn-dark" value="Allocate" />
+        <input type="submit" class="btn btn-light" value="Allocate" />
       </div>
     </div>
   </form>
 </div></div>
   <div class="col"><div class="container-sm w-50 m-auto ">
-    <h1>Deallocation</h1>
+    <h1 class="text-white">Deallocation</h1>
   <form action="/deallocated" method="post" class="mt-3">
-    <div class="input-box"> <label for="Year"><h5>De-allocating for the Class of :</h5></label>
+    <div class="input-box"> <label for="Year"><h5 class="text-white">De-allocating for the Class of :</h5></label>
 
       <select class="form-select " name="deallocated" id="Year" required>
         <option value="2024">2024</option>
@@ -55,7 +55,7 @@
       </select></div>
 
     <div class=" d-grid mt-3">
-      <input type="submit" class="btn btn-dark" value="Deallocate" />
+      <input type="submit" class="btn btn-light" value="Deallocate" />
     </div>
   </form>
 </div></div>

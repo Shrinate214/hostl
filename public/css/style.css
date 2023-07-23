@@ -1,9 +1,12 @@
 body {
-    background-color: #ebe6db;
+    /* background-color: #ebe6db;
     /* #cfbcab */
     /* #b481ff */
 
-background-image: url("https://www.transparenttextures.com/patterns/black-felt.png");
+/* background-image: url("https://www.transparenttextures.com/patterns/black-felt.png"); */ 
+background-color: #292929;
+background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 
 }
 
@@ -96,7 +99,8 @@ background-image: url("https://www.transparenttextures.com/patterns/black-felt.p
     /* background: rgb(194,13,221);
     background: linear-gradient(306deg, rgba(194,13,221,1) 35%, rgba(194,13,221,1) 58%, rgba(192,0,255,1) 71%, rgba(192,0,255,1) 87%); */
     /* background-color: #bb9359; */
-    background-color: #9f8e77;
+    /* background-color: #9f8e77; */
+    background: rgb(0, 0, 0);
 } 
 
 .header {
