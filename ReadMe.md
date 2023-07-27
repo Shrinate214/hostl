@@ -3,3 +3,7 @@ Allows separate User Interface for both Warden and Student and brings all the ma
 Making the process faster and easier
 
 https://github.com/Shrinate214/hostl/assets/122126004/6a61b421-cd8a-423b-8371-fae0f3a2d049
+
+## Installation Guide...
+1. Clone the repository using the command -->  '' git clone https://github.com/Shrinate214/hostl.git ''
+2. 
