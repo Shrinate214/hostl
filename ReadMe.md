@@ -6,4 +6,7 @@ https://github.com/Shrinate214/hostl/assets/122126004/6a61b421-cd8a-423b-8371-fa
 
 ## Installation Guide...
 1. Clone the repository using the command -->  '' git clone https://github.com/Shrinate214/hostl.git ''
-2. 
+2. Then change directory to hostl using -->  '' cd hostl ''
+3. Insatll the required packages using --> '' npm install ''
+4. Start the local server using -->  '' node app.js ''
+5. Go to your browser and open '' http://localhost:3000/ ''
